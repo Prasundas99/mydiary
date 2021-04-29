@@ -1,3 +1,4 @@
+import { Mongoose } from 'mongoose';
 import Note from '../models/notesModel.js';
 
 // @route: GET/notes
@@ -26,5 +27,37 @@ export const postNotes = async (req , res ) => {
     }
 };
 
-// @route: 
+// @route: PATCH/notes
+// @purpose: PATCH or update the notes
+export const patchNotes = async (req , res) => {
+    const {id: _id} = req.params;
+    const post = req.body;
+
+    if(!Mongoose.Types.objectId.isValid(_id))
+        res.status(404).send("No post with that is Found");
+   
+    const updateNotes = await Note.findByIdAndUpdate(
+        _id,
+        {...post,id},
+        {
+            new: true,
+        }
+    );
+    res.json(updateNotes);    
+};
+
+
+// @route: DELETE/notes
+export const deleteNotes = async (res,req) => {
+    const {id: _id} = req.params;
+
+    if(!Mongoose.Types.objectId.isValid(_id))
+        res.status(404).send("No post with that is Found");
+    try {
+        await Note.findByIdAndDelete(_id);
+        res.status(200).json({message: "Post deleted successfully"});
+    } catch (error) {
+        res.status(404).json({message: error});
+    }
+}
 
