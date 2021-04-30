@@ -1,0 +1,28 @@
+//Get Reqquest
+GET http://localhost:5000/notes
+
+###
+
+POST http://localhost:5000/notes/ HTTP/1.1
+'content-type': 'application/json'
+
+{
+    "title": "Joy shree ram",
+    "body": "khela hobei"
+}
+
+
+###
+PATCH http://localhost:5000/notes/ HTTP/1.1
+'content-type': 'application/json'
+
+{
+    "title": "Joy shree ram",
+    "body": "erom korle khelbona"
+}
+
+###
+
+DELETE  http://localhost:5000/notes/608be5a74af08569e0f8961a 
+
+

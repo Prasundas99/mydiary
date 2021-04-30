@@ -1,5 +1,6 @@
-import { Mongoose } from 'mongoose';
 import Note from '../models/notesModel.js';
+
+
 
 // @route: GET/notes
 //@puropose : get all notes from db
@@ -16,10 +17,13 @@ export const getNotes = async (req, res) => {
 //@route: POST/notes
 //@purpose: : Post new note by user
 export const postNotes = async (req , res ) => {
-    const post = req.body;
-    const newNotes = new Note(post);
+    var post = req.body;
+    console.log(req.body);
+
+    var newNotes = new Note(post);
 
     try {
+        console.log(req.body);
         await newNotes.save();
         res.status(201).json(newNotes)
     } catch (error) {
