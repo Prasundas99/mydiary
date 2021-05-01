@@ -1,6 +1,8 @@
 import {transporter} from '../config/nodemailer.js';
 import resetPassword from '../models/resetPasswordModel.js';
 
+
+
 const forgetPassword_mailer = (resetPassword) => {
     console.log("Inside forget Pasword mailer", resetPassword);
 

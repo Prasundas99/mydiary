@@ -2,7 +2,7 @@ import express from "express";
 import {
   emailVerification,
   passwordReset,
-} from "../controller/resetPasswordComtroller.js";
+} from "../controller/resetPasswordController.js";
 const router = express.Router();
 
 router.route("/email-verify").post(emailVerification);

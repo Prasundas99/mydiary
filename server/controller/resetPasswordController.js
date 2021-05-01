@@ -21,8 +21,8 @@ export const emailVerification = async (req, res, next) => {
       await resetPassword.save();
   
       const resetPasswordReq = await resetPasswordModel
-        .findOne({ user: user._id })
-        .populate("user");
+        .findOne({ user: User._id })
+        .populate("User");
       console.log(resetPasswordReq);
       // Sending Mail
       resetPassword_mailer(resetPasswordReq);
