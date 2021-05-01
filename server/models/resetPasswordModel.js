@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import user from './userModel';
+import user from './userModel.js';
 
 const resetPasswordSchema = mongoose.Schema({
     user:{
@@ -13,7 +13,8 @@ const resetPasswordSchema = mongoose.Schema({
         type: Boolean,
         default: false,
     },
-}),
+});
 
-const resetPassword = mongoose.model('resetPassword', resetPasswordSchema);
+const resetPassword = mongoose.model('ResetPassword', resetPasswordSchema);
+
 export default resetPassword;

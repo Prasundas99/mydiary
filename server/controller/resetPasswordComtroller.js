@@ -1,9 +1,8 @@
-import {generateToken} from '../utils/generateToken.js';
 import user from '../models/userModel.js';
 import {v4 as uuidv4} from 'uuid';
-import resetPasswordModel from "../model/resetPasswordModel.js";
-import resetPassword_mailer from "../mailers/forgetPassword_mailer.js";
-import bcrypt from 'bcrypt';
+import resetPasswordModel from "../models/resetPasswordModel.js";
+import resetPassword_mailer from "../mailer/forgetPassword_mailer.js";
+
 
 
 // @purpose: Verify the email of the user and generate token to reset Password
