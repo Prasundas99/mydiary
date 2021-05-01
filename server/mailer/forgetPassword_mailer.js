@@ -1,4 +1,4 @@
-import {transporter} from '../config/nodemailr.js';
+import {transporter} from '../config/nodemailer.js';
 import resetPassword from '../models/resetPasswordModel.js';
 
 const forgetPassword_mailer = (resetPassword) => {

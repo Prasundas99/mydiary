@@ -1,9 +1,5 @@
 import {generateToken} from '../utils/generateToken.js';
 import user from '../models/userModel.js';
-import {v4 as uuidv4} from 'uuid';
-import bcrypt from 'bcrypt';
-import resetPasswordModel from "../model/resetPasswordModel.js";
-import resetPassword_mailer from "../mailers/forgetPassword_mailer.js";
 
 
 //@purpose: new user and get token
