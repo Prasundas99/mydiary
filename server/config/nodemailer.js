@@ -8,6 +8,9 @@ let transporter = nodemailer.createTransport({
         user: process.env.MAIL,
         pass: process.env.PASS,     
     },
+     tls:{
+        rejectUnauthorized:false
+    }
 });
 
 export {transporter};
