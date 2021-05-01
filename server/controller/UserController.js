@@ -1,10 +1,13 @@
 import {generateToken} from '../utils/generateToken.js';
-import bcrypt from 'bcrypt';
 import user from '../models/userModel.js';
+import {v4 as uuidv4} from 'uuid';
+import bcrypt from 'bcrypt';
+import resetPasswordModel from "../model/resetPasswordModel.js";
+import resetPassword_mailer from "../mailers/forgetPassword_mailer.js";
 
 
 //@purpose: new user and get token
-//@route:  POST/register
+//@route:  POST user/register
 //@access  Public
 export const registerUser = async(req,res,next) => {
     const {username,email,password} = req.body;
@@ -36,7 +39,7 @@ export const registerUser = async(req,res,next) => {
 
 
 // @purpose: Auth user and get token
-// @route: POST/login
+// @route: user/login
 // @access Public
 export const loginUser = async(req, res, next) => {
     const {email, password} = req.body;
@@ -56,3 +59,4 @@ export const loginUser = async(req, res, next) => {
         next(err);
     }
 };
+
