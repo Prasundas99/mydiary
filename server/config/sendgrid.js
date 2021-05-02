@@ -1,6 +1,8 @@
-import nodemailer from 'nodemailer';
+/*import sgMail from '@sendgrid/mail'
 
-let transporter = nodemailer.createTransport({
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
+const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 6969,
     secure: false,
@@ -13,4 +15,4 @@ let transporter = nodemailer.createTransport({
     }
 });
 
-export {transporter};
+export {transporter};*/

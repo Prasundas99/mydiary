@@ -13,19 +13,20 @@ export const emailVerification = async (req, res, next) => {
       const User = await user.findOne({ email: email });
       const accessToken = uuidv4();
       const resetPassword = new resetPasswordModel({
-        user: User._id,
+        username: User._id,
         accessToken: accessToken,
         isValid: true,
+        
       });
   
       await resetPassword.save();
   
       const resetPasswordReq = await resetPasswordModel
-        .findOne({ user: User._id })
-        .populate("User");
-      console.log(resetPasswordReq);
+        .findOne({username: User._id })
+        .populate("username");
+      console.log(resetPasswordReq.username.email);
       // Sending Mail
-      resetPassword_mailer(resetPasswordReq);
+       resetPassword_mailer(resetPasswordReq);
   
       res.json({ accessToken: resetPassword.accessToken });
     } catch (error) {
@@ -46,10 +47,10 @@ export const emailVerification = async (req, res, next) => {
       console.log(resetPasswordToken);
       if (resetPasswordToken.isValid) {
         const User = await (
-          await user.findOne({ _id: resetPasswordToken.user })
-        ).populate("User");
+          await user.findOne({ _id: resetPasswordToken.username })
+        ).populate("username");
         if (User) {
-          if (User && !(await user.checkPassword(password))) {
+          if (User) {
             User.password = password;
             User.save();
   
