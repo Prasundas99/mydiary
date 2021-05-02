@@ -1,8 +1,14 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
+import Note from './notesModel.js'
 
 const userSchema=new mongoose.Schema({
+    
+    notes: {
+        type: mongoose.Types.ObjectId,
+        ref: Note,
+    },
     username:{
         type:String,
         required:true,
@@ -12,11 +18,13 @@ const userSchema=new mongoose.Schema({
         type:String,
         required:true,
         unique:true
+
     },
     password:{
         type:String,
         required:true,
     },
+
 })
 
 

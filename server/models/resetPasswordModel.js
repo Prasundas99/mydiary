@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import user from './userModel.js';
 
 const resetPasswordSchema = mongoose.Schema({
-    user:{
+    username:{
         type: mongoose.Types.ObjectId,
         ref: user,
     },
