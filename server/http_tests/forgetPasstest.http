@@ -11,16 +11,16 @@ POST http://localhost:5000/reset/email-verify
 Content-Type: application/json
 
 {
-     "email": "prasundas115@gmail.com"
+     "email": "prasun.4.das@gmail.com"
 }
 
 
 ###
 
-POST http://localhost:5000/reset/password/4657aef7-6e55-404a-8fc1-ff2c6e1f0f40
+POST http://localhost:5000/reset/password/1715ceb7-6402-47d4-a218-5542613cd13a
 Content-Type: application/json
 
 {
-    "email": "prasundas115@gmail.com",
+    "email": "prasun.4.das@gmail.com",
     "password": "janina"
 }

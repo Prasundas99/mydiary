@@ -10,7 +10,9 @@ const forgetPassword_mailer = (resetPassword) => {
             from: "prasundas115@gmail.com",
             to: resetPassword.username.email,
             subject: "Forget Password Request!!!",
-            html: `<h1>Your access token for password reset is ${resetPassword.accessToken}  </h1>`,
+            html: `<h1>Your access token for password reset is ${resetPassword.accessToken} 
+                       
+                  </h1>`,
         }
         sgMail
             .send(msg)
