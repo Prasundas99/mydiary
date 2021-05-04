@@ -41,14 +41,22 @@ A Personal diary webapp where user can write their own things uniquely
 | POST `reset/pass` | For Password Reset      |
 | DELETE `/email-verify` | verify email      |
 
+
+## Api 
+
+For more details about the test cases and datas to pass please refer [here](https://github.com/Prasundas99/mydiary/tree/main/server/http_tests)
+
 ## Build Setup
 
 ```
 # Clone repo and cd into directory
-git clone https://github.com/olusoladavid/my-diary.git
+git clone https://github.com/Prasundas99/mydiary.git
 ```
 
 ```
+# Change Direcrty
+cd client || cd server
+
 # Install dependencies
 npm install
 
