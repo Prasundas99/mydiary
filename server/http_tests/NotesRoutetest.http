@@ -1,10 +1,14 @@
 //Get Reqquest
-GET http://localhost:5000/notes
+GET http://localhost:5000/users/notes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjAwNTkzMDIsImV4cCI6MTYyODY5OTMwMn0.PVmcUnAZcMFytnDrgsZ8HvHqWVZTyZToQBEZikI4BdY
+
+
 
 ###
 
-POST http://localhost:5000/notes/ HTTP/1.1
+POST http://localhost:5000/users/notes/ HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjAwNTkzMDIsImV4cCI6MTYyODY5OTMwMn0.PVmcUnAZcMFytnDrgsZ8HvHqWVZTyZToQBEZikI4BdY
 
 {
     "title": "Joy shree ram",
@@ -15,6 +19,7 @@ Content-Type: application/json
 ###
 PATCH http://localhost:5000/notes/608c27cb73dfb343d0f72914 HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjAwNTkzMDIsImV4cCI6MTYyODY5OTMwMn0.PVmcUnAZcMFytnDrgsZ8HvHqWVZTyZToQBEZikI4BdY
 
 {
     "title": "Joy shree ram",

@@ -59,41 +59,6 @@ export const loginUser = async(req, res, next) => {
 };
 
 
-// @purpose: logout the user
-// @route: user/logout
-export const logoutUser = async(req, res, next) => {
- /*   const {email, token} = req.body;
-    const User = await user.findOne({email:email});
-
-    if(User && (await User.checkPassword(password))) {
-        res.json({
-        _id: User._id,
-        name: User.username,
-        email: User.email,
-        token: generateToken(user._id),
-        });
-    }
-    else{
-        res.status(401);
-        const err = new Error("Invalid email or password");
-        next(err);
-    }
-
-    const {user,token} = req
-       User.findByIdAndUpdate(user._id,{$pull:{tokens:{token:token}}})
-        .then(()=>res.send({notice:'successfully logged out'}))
-        .catch(err=>res.send(err))
-        */
-};
-
-
-
-
-
-
-
-
-
 // @purpose: get user
 // @route: user/
 export const getUsers = async (req, res) => {
