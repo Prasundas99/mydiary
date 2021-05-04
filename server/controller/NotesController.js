@@ -1,28 +1,44 @@
 import Mongoose from 'mongoose';
 import Note from '../models/notesModel.js';
+import {v4 as uuidv4} from 'uuid';
+import user from '../models/userModel.js';
 
-
-
-// @route: GET/notes
-//@puropose : get all notes from db
-export const getNotes = async (req, res) => {
+// @route: GET users/notes
+//@puropose : get all notes from db for single user
+export const getNotes = async (req, res, next) => {
     try {
-        const notefetch = await Note.find();
-        res.status(200).json(notefetch); 
+        const User = await user.findOne({ email: email });
+        const notefetch = await Note
+            .findOne({username: User._id })
+            .populate("username");
+            res.status(200).json(notefetch);
     } catch (error) {
-        res.status(404).json({message: error.message });
-        
+        res.status(404);
+        next(error);
     }
 };
 
-//@route: POST/notes
+
+//@route: POST users/notes
 //@purpose: : Post new note by user
-export const postNotes = async (req , res ) => {
+export const postNotes = async (req , res, next ) => {
+    const User = await user.findOne({ id: _id });
     var post = req.body;
     console.log(req.body);
+    /*
+    body.username = req.user._id;
+    console.log(req.body);
+    */
+    const accessToken = uuidv4();
 
-    var newNotes = new Note(post);
-
+    const newpost = {
+        ...post,
+        username: User._id,
+        accessToken: accessToken,
+        isValid: true,
+    }
+    
+    var newNotes = new Note(newpost);
     try {
         console.log(req.body);
         await newNotes.save();
@@ -30,11 +46,15 @@ export const postNotes = async (req , res ) => {
     } catch (error) {
         res.status(409).json({message:error.message});
     }
+    
 };
 
-// @route: PATCH/notes
+// @route: PATCH users/notes/:id
 // @purpose: PATCH or update the notes
 export const patchNotes = async (req , res) => {
+    const User = await user.findOne({ email: email });
+    body.username = req.user._id;
+
     const {id: id} = req.params;
     const post = req.body;
 
@@ -52,17 +72,16 @@ export const patchNotes = async (req , res) => {
 };
 
 
-// @route: DELETE/notes
+// @route: DELETE usera/notes/id
 export const deleteNotes = async (req,res) => {
-    const {id: id} = req.params;
-    console.log(req.params);
-    if(!Mongoose.Types.ObjectId.isValid(id))
-        res.status(404).send("No post with that is Found");
     try {
-        await Note.findByIdAndDelete(id);
-        res.status(200).json({message: "Post deleted successfully"});
-    } catch (error) {
-        res.status(404).json({message: error});
-    }
+        const deleteusernote = await UserCareer.deleteOne({
+          User: req.Note._id,
+        });
+        res.status(200).json(deleteusernote);
+      } catch (error) {
+        res.status(404);
+        next(error);
+      }
 }
 

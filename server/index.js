@@ -32,7 +32,7 @@ app.use(cors());
 
 //Routes
 app.use('/', HomeRouter);
-app.use('/notes', NotesRouter);
+app.use('/users/notes', NotesRouter);
 app.use('/users', UserRouter)
 app.use('/reset', ResetRouter)
 
