@@ -10,8 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-import Login_1 from '../assets/Login_1.png';
-import Login_2 from '../assets/Login_2.png';
+import Signup_1 from '../assets/Signup_1.png';
+import Signup_2 from '../assets/Signup_2.png';
 
 import { useStyles } from '../styles/LoginScreenStyle';
 
@@ -25,7 +25,7 @@ export default function LoginScreen() {
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={false} md={4}  >
-      <img src={Login_1}  className={isMobile? classes.display : classes.image} />
+      <img src={Signup_1}  className={isMobile? classes.display : classes.image} />
       </Grid>  
       <Grid item xs={12} sm={12} md={4} component={Paper} elevation={0} >
         <div className={classes.paper}>
@@ -34,9 +34,19 @@ export default function LoginScreen() {
           </Typography>
           <br />
           <Typography component="h1" variant="h5">
-            Login in
+            Sign in
           </Typography>
           <form className={classes.form} noValidate>
+          <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="Name"
+              label="Your Name"
+              name="name"
+              autoFocus
+            />
             <TextField
               variant="outlined"
               margin="normal"
@@ -88,7 +98,7 @@ export default function LoginScreen() {
         </div>
       </Grid>
       <Grid item xs={false} sm={false} md={4}  >
-      <img src={Login_2}  className={isMobile? classes.display :classes.image2} />
+      <img src={Signup_2}  className={isMobile? classes.display :classes.image2} />
       </Grid>  
     </Grid>
   );
