@@ -5,6 +5,8 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import ScrollToTop from './scrolltotop';
 import LoginScreen from './screen/LoginScreen';
 import SigninScreen from './screen/SigninScreen';
+import Navbar from "./component/Navbar";
+import Footer from "./component/Footer";
 
 function App() {
 
@@ -23,6 +25,7 @@ function App() {
       <Router>
         
         <ScrollToTop>
+          <Navbar />
           <Switch>
             <Route exact path="/Login">
               <LoginScreen />
@@ -32,7 +35,7 @@ function App() {
             </Route>
           </Switch>
         </ScrollToTop>
-       
+       <Footer />
       </Router>
     </MuiThemeProvider>
   );
