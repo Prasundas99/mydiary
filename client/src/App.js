@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+
+import ScrollToTop from './scrolltotop';
+import LoginScreen from "./screen/LoginScreen";
 
 function App() {
+
+  const theme = createMuiTheme({
+    typography: {
+      fontFamily: '"Segoe UI "',
+    },
+    palette: {
+      primary: { main: "#4f9f28" },
+      secondary: { main: "#fffafa" },
+    },
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MuiThemeProvider theme={theme}>
+      <Router>
+        
+        <ScrollToTop>
+          <Switch>
+            <Route exact path="/">
+              <LoginScreen />
+            </Route>
+          </Switch>
+        </ScrollToTop>
+       
+      </Router>
+    </MuiThemeProvider>
   );
 }
 
