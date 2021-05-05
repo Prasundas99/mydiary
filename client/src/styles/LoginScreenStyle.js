@@ -4,21 +4,26 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles((theme) => ({
     root: {
       height: '100vh',
+      background: "#fff"
     },
     image: {
-      backgroundImage: 'url(https://source.unsplash.com/random)',
-      backgroundRepeat: 'no-repeat',
-      backgroundColor:
-        theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
+     // height: '100vh',
+      width: "100%"
     },
+    image2: {
+      marginTop: '35vh',
+      // height: '100vh',
+       width: "100%"
+     },
+     display: {
+       display: 'none',
+     },
     paper: {
-      margin: theme.spacing(10, 6),
+      margin: theme.spacing(15, 12),
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      height: '30vh'
+      
     },
     avatar: {
       margin: theme.spacing(1),
@@ -30,6 +35,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     submit: {
       margin: theme.spacing(3, 0, 2),
+      color: "#fff"
     },
   }));
   

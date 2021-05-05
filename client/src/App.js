@@ -12,7 +12,7 @@ function App() {
       fontFamily: '"Segoe UI "',
     },
     palette: {
-      primary: { main: "#4f9f28" },
+      primary: { main: "rgb(38 98 137)" },
       secondary: { main: "#fffafa" },
     },
   });
