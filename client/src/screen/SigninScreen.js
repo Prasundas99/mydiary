@@ -12,12 +12,13 @@ import Typography from '@material-ui/core/Typography';
 
 import Signup_1 from '../assets/Signup_1.png';
 import Signup_2 from '../assets/Signup_2.png';
+import Signup_3 from '../assets/Signup_3.png'
 
 import { useStyles } from '../styles/LoginScreenStyle';
 
 
 
-export default function LoginScreen() {
+export default function SignScreen() {
   const classes = useStyles();
   const isMobile = window.innerWidth <= 880;
 
@@ -25,7 +26,8 @@ export default function LoginScreen() {
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={false} md={4}  >
-      <img src={Signup_1}  className={isMobile? classes.display : classes.image} />
+     
+      <img src={Signup_3}  className={isMobile? classes.display : classes.image} />
       </Grid>  
       <Grid item xs={12} sm={12} md={4} component={Paper} elevation={0} >
         <div className={classes.paper}>
