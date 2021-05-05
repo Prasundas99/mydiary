@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 
 import ScrollToTop from './scrolltotop';
-import LoginScreen from "./screen/LoginScreen";
+import LoginScreen from './screen/LoginScreen';
+import SigninScreen from './screen/SigninScreen';
 
 function App() {
 
@@ -23,8 +24,11 @@ function App() {
         
         <ScrollToTop>
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/Login">
               <LoginScreen />
+            </Route>
+            <Route exact path="/Signin">
+              <SigninScreen />
             </Route>
           </Switch>
         </ScrollToTop>
