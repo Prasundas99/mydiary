@@ -7,6 +7,8 @@ import LoginScreen from './screen/LoginScreen';
 import SigninScreen from './screen/SigninScreen';
 import Navbar from "./component/Navbar";
 import Footer from "./component/Footer";
+import Home from "./screen/Home";
+import NewNoteScreen from "./screen/NewNoteScreen";
 
 function App() {
 
@@ -25,17 +27,29 @@ function App() {
       <Router>
         
         <ScrollToTop>
-          <Navbar />
+          
           <Switch>
             <Route exact path="/Login">
               <LoginScreen />
             </Route>
+
             <Route exact path="/Signin">
               <SigninScreen />
             </Route>
+
+            <>
+            <Navbar />
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/new">
+              <NewNoteScreen />
+            </Route>
+            <Footer />
+            </>
           </Switch>
         </ScrollToTop>
-       <Footer />
+
       </Router>
     </MuiThemeProvider>
   );

@@ -14,10 +14,10 @@ import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import { Link } from 'react-router-dom';
 
 import { useStyles } from "../styles/NavbarStyling";
-import { Divider } from "@material-ui/core";
 
 export default function Navbar() {
   const classes = useStyles();
@@ -31,10 +31,10 @@ export default function Navbar() {
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.height}>
-        <Toolbar variant="dense">
+        <Toolbar variant="regular">
           {/*Nav Header*/}
           <Typography variant="h4" className={classes.title}>
-             MyDiary
+          <Link to = "/" style={{ textDecoration: 'none' }}> MyDiary </Link>
           </Typography>
 
           {isMobile ? (
@@ -47,9 +47,11 @@ export default function Navbar() {
               <Typography variant="body2" className={classes.navItems}>
                   Logout
               </Typography>
+              <Link to = "/new" style={{ textDecoration: 'none' }}>
               <Button color="inherit" className={classes.auth}>
-                <AddIcon />    New
+                 <AddIcon />    New
               </Button>
+              </Link>
             </>
           ) : (
             <>
@@ -70,22 +72,30 @@ export default function Navbar() {
                 open={toggle}
                 onClose={() => setToggle(false)}
               >
-                <List>
+                <List className={classes.list}>
                   <ListItem button>
-                    <ListItemText primary={"About Us"} className={classes.mobilenavItems} />
+                    <ListItemText  className={classes.mobilenavItems} >
+                       Hello, Prasun Das
+                    </ListItemText>
                   </ListItem>
-                  <Divider />
                   <ListItem button>
-                    <ListItemText primary={"Write Your Blog"}  className={classes.mobilenavItems}/>
+                  <ListItemIcon>
+                  <Exit className={classes.exit} />
+                  </ListItemIcon>
+                   <ListItemText  className={classes.mobilenavItems} >
+                     Logout
+                    </ListItemText>
                   </ListItem>
-                  <Divider />
-
+                  <Link to = "/new" style={{ textDecoration: 'none' }}>
                   <ListItem button>
-                    <ListItemText primary={"Login"}  className={classes.mobilenavItems} />
+                  <ListItemIcon>
+                  <AddIcon className={classes.exit} />
+                  </ListItemIcon>
+                   <ListItemText  className={classes.mobilenavItems} >
+                     New
+                    </ListItemText>
                   </ListItem>
-                  <Divider />
-
-                  
+                  </Link>
                 </List>
               </Drawer>
             </>

@@ -3,13 +3,15 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
-      boxShadow: '0 3px 5px 4px #d0f7ff',
       background: "#fff",
+      width: "100%",
+      boxShadow: "none"
     },
     height:{
         height: '4rem',
-        background: '#fff'
+        background: '#fff',
+        marginTop: '-0.5rem',
+        boxShadow: "none"
     },
     menuButton: {
       marginRight: theme.spacing(3),
@@ -26,10 +28,10 @@ export const useStyles = makeStyles((theme) => ({
     },
     mobilenavItems: {
       color: '#4D7178',
-      flexGrow: 0.1,
+      flexGrow: 0,
      fontWeight:600,
      fontSize: '1rem',
-     padding: '1rem 0'
+     padding: '1.2rem 0'
   },
   exit:{
     color: '#4D7178',
@@ -46,7 +48,7 @@ export const useStyles = makeStyles((theme) => ({
         }
     },
     list: {
-      width: 420,
+      width: 210,
     },
     fullList: {
       width: 'auto',

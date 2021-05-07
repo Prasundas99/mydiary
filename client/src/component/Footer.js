@@ -29,20 +29,19 @@ function Footer() {
 
           {/*Column-2 Company column */}
           <Grid item spacing={6} md={6} lg={3} xs={6}>
-            <Link to="/AboutUs" style={{ textDecoration: 'none' }}><Typography className={clsx(classes.list, classes.top)}> About Us </Typography></ Link>
+            <Link to="/AboutUs" style={{ textDecoration: 'none' }}><Typography className={clsx(classes.list, classes.top)}> About My Diary </Typography></ Link>
             <Link to="/ContactUs" style={{ textDecoration: 'none' }}><Typography className={clsx(classes.list, classes.top)}> Contact Us </Typography></ Link>
           </Grid>
 
           {/*Column-2 Company column */}
          <Grid item spacing={6} md={6} lg={3} xs={4}>
-            <Link to="/FAQ" style={{ textDecoration: 'none' }}><Typography className={clsx(classes.list, classes.top)}> FAQ </Typography></ Link>
-            <Link to="/TermsandConditions" style={{ textDecoration: 'none' }}><Typography className={clsx(classes.list, classes.top)}> Terms and condition </Typography></ Link>
+         <Link to="/FeatureRequest" style={{ textDecoration: 'none' }}><Typography className={clsx(classes.list, classes.top)}> Feature Request </Typography></ Link>
+            <Link to="/Bug" style={{ textDecoration: 'none' }}><Typography className={clsx(classes.list, classes.top)}> Report a Bug </Typography></ Link>
           </Grid>
 
           {/*Column-3 Dev column */}
           <Grid item spacing={6} md={6} lg={3} xs={5}>
-            <Link to="/FeatureRequest" style={{ textDecoration: 'none' }}><Typography className={clsx(classes.list, classes.top)}> Feature Request </Typography></ Link>
-            <Link to="/Bug" style={{ textDecoration: 'none' }}><Typography className={clsx(classes.list, classes.top)}> Report a Bug </Typography></ Link>
+           
             <Link to="/" style={{ textDecoration: 'none' }}><Typography className={clsx(classes.list, classes.top)}> Source Code </Typography></ Link>
           </Grid>
 
