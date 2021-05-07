@@ -1,20 +1,19 @@
-import mongoose from 'mongoose';
-import user from './userModel.js';
+import mongoose from "mongoose";
 
 const resetPasswordSchema = mongoose.Schema({
-    username:{
-        type: mongoose.Types.ObjectId,
-        ref: user,
-    },
-    accessToken: {
-        type: String,
-    },
-    isValid: {
-        type: Boolean,
-        default: false,
-    },
+  username: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+  },
+  accessToken: {
+    type: String,
+  },
+  isValid: {
+    type: Boolean,
+    default: false,
+  },
 });
 
-const resetPassword = mongoose.model('ResetPassword', resetPasswordSchema);
+const resetPassword = mongoose.model("ResetPassword", resetPasswordSchema);
 
 export default resetPassword;
