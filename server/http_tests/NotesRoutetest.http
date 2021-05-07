@@ -1,25 +1,25 @@
 //Get Reqquest
 GET http://localhost:5000/users/notes
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjAwNTkzMDIsImV4cCI6MTYyODY5OTMwMn0.PVmcUnAZcMFytnDrgsZ8HvHqWVZTyZToQBEZikI4BdY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDk1NTM0OTY2M2UwZDMxNzBkN2E4MjIiLCJpYXQiOjE2MjA0MDA3MDUsImV4cCI6MTYyOTA0MDcwNX0.90Z0GyK4j1PFw29Uiv2s-JpHhRKQiqGcPB4Ne_UWPWA
 
 
 
 ###
 
-POST http://localhost:5000/users/notes/ HTTP/1.1
+POST http://localhost:5000/users/notes
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjAwNTkzMDIsImV4cCI6MTYyODY5OTMwMn0.PVmcUnAZcMFytnDrgsZ8HvHqWVZTyZToQBEZikI4BdY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDk1NTM0OTY2M2UwZDMxNzBkN2E4MjIiLCJpYXQiOjE2MjA0MDA3MDUsImV4cCI6MTYyOTA0MDcwNX0.90Z0GyK4j1PFw29Uiv2s-JpHhRKQiqGcPB4Ne_UWPWA
 
 {
-    "title": "Joy shree ram",
+    "title": "Joy shree daam",
     "body": "khela hobei"
 }
 
 
 ###
-PATCH http://localhost:5000/notes/608c27cb73dfb343d0f72914 HTTP/1.1
+PATCH http://localhost:5000/users/notes/60955d4dd6887340a0d4c1e8 
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjAwNTkzMDIsImV4cCI6MTYyODY5OTMwMn0.PVmcUnAZcMFytnDrgsZ8HvHqWVZTyZToQBEZikI4BdY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDk1NTM0OTY2M2UwZDMxNzBkN2E4MjIiLCJpYXQiOjE2MjA0MDA3MDUsImV4cCI6MTYyOTA0MDcwNX0.90Z0GyK4j1PFw29Uiv2s-JpHhRKQiqGcPB4Ne_UWPWA
 
 {
     "title": "Joy shree ram",
@@ -28,7 +28,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjAwNTkzM
 
 ###
 
-DELETE  http://localhost:5000/notes/608c27cb73dfb343d0f72914 
+DELETE  http://localhost:5000/users/notes/60955d4dd6887340a0d4c1e8 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDk1NTM0OTY2M2UwZDMxNzBkN2E4MjIiLCJpYXQiOjE2MjA0MDA3MDUsImV4cCI6MTYyOTA0MDcwNX0.90Z0GyK4j1PFw29Uiv2s-JpHhRKQiqGcPB4Ne_UWPWA
+
 
 
 
