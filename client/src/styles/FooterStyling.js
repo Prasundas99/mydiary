@@ -5,7 +5,7 @@ export const useStyles = makeStyles((theme) => ({
         background: '#fff',
         color: '#4D7178',
         padding: '2em 3em',
-        boxShadow: '0 3px 5px 4px #d0f7ff',        
+                
       },
       store : {
         height: '2rem',
