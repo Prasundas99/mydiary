@@ -5,5 +5,9 @@ const config = {
     "Content-Type" : "application/json",
 };
 
-export const userLoginPost = (email , password) =>
-    axios.post(url, email, password, {headers: {'Access-Control-Allow-Origin': '*'}}, config);
+export const userLoginPost = (email , password) =>{
+axios.post(url,
+    {email, password},
+     config
+     );
+}     

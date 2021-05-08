@@ -21,10 +21,17 @@ export const useStyles = makeStyles((theme) => ({
     },
     btn: {
         padding: '0.5rem 1rem',
-        marginLeft: '-75%',
+        marginLeft: '-60%',
         borderRadius: ' 1rem ',
         background: 'rgb(38 98 137)',
         marginTop: '3rem'
+      },
+      btndelete: {
+        padding: '0.5rem 1rem',
+        borderRadius: ' 1rem ',
+        background: 'red',
+        marginTop: '3rem',
+        marginLeft: "1rem"
       },
     grid: {
         marginTop: '1rem',

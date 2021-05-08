@@ -1,40 +1,67 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router";
 
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
-import Login_1 from '../assets/Login_1.png';
-import Login_2 from '../assets/Login_2.png';
+import Login_1 from "../assets/Login_1.png";
+import Login_2 from "../assets/Login_2.png";
 
-import { useStyles } from '../styles/LoginScreenStyle';
+import { useStyles } from "../styles/LoginScreenStyle";
 
-
+//Redux
+import { userLogin } from "../redux/actions/userAction";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function LoginScreen() {
   const classes = useStyles();
   const isMobile = window.innerWidth <= 880;
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // REDUX
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.userLogin);
+
+  // redirect to home page if logged in
+  const history = useHistory();
+  useEffect(() => {
+    if (userInfo) {
+      history.push("/");
+    }
+  }, [history, userInfo]);
+
+  // submit handler
+  const submitHandler = (event) => {
+    event.preventDefault();
+    dispatch(userLogin(email, password));
+  };
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={false} md={4}  >
-      <img src={Login_1}  className={isMobile? classes.display : classes.image} />
-      </Grid>  
-      <Grid item xs={12} sm={12} md={4} component={Paper} elevation={0} >
+      <Grid item xs={false} sm={false} md={4}>
+        <img
+          src={Login_1}
+          className={isMobile ? classes.display : classes.image}
+        />
+      </Grid>
+      <Grid item xs={12} sm={12} md={4} component={Paper} elevation={0}>
         <div className={classes.paper}>
-        <Typography component="h1" variant="h3">
+          <Typography component="h1" variant="h3">
             MyDiary
           </Typography>
           <br />
           <Typography component="h1" variant="h5">
-            Login in
+            Login
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -47,6 +74,8 @@ export default function LoginScreen() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -58,6 +87,8 @@ export default function LoginScreen() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -69,17 +100,18 @@ export default function LoginScreen() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={submitHandler}
             >
-              Sign In
+              Login
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link to="Password-reset" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link to="/signin" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -87,9 +119,12 @@ export default function LoginScreen() {
           </form>
         </div>
       </Grid>
-      <Grid item xs={false} sm={false} md={4}  >
-      <img src={Login_2}  className={isMobile? classes.display :classes.image2} />
-      </Grid>  
+      <Grid item xs={false} sm={false} md={4}>
+        <img
+          src={Login_2}
+          className={isMobile ? classes.display : classes.image2}
+        />
+      </Grid>
     </Grid>
   );
 }
