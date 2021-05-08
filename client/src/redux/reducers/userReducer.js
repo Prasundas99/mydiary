@@ -31,6 +31,10 @@ import {
                 return{
                     isAuthenticated: false,
                 };
+            case USER_LOGOUT:
+              return{
+                isAuthenticated:false,
+              };    
                 
             default:
                 return state;    

@@ -38,7 +38,7 @@ const {userInfo} = useSelector((state) => state.userLogin);
 const history = useHistory();
 useEffect(() =>{
   if(userInfo){
-    history.pushState("/");
+    history.push("/");
   }
 }, [history,userInfo]);
 
@@ -122,7 +122,7 @@ const submitHandler = (event) => {
             <Grid container>
               <Grid item xs>
                 <Link to='/' variant="body2">
-                  Already Registered ?
+                  Already Registered ? Login instead
                 </Link>
               </Grid>
               <Grid item>
