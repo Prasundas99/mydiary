@@ -6,7 +6,6 @@ export const useStyles = makeStyles((theme) => ({
     CardOne:{
         height: '9rem',
         margin: '2rem 0',
-        background: 'black',
         borderRadius: '0 2rem',
         color:'black',
         padding: "1rem",

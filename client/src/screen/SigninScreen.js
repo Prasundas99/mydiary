@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import { useHistory } from "react-router";
 
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,17 +11,42 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-import Signup_1 from '../assets/Signup_1.png';
+
 import Signup_2 from '../assets/Signup_2.png';
 import Signup_3 from '../assets/Signup_3.png'
 
 import { useStyles } from '../styles/LoginScreenStyle';
 
-
+// Redux
+import {userRegister} from '../redux/actions/userAction'
+import {useDispatch, useSelector } from "react-redux";
 
 export default function SignScreen() {
   const classes = useStyles();
   const isMobile = window.innerWidth <= 880;
+
+const [username , setUsername] = useState("");
+const [email , setEmail] = useState("");
+const [password , setPassword] = useState("");
+
+
+//redux
+const  dispatch = useDispatch();
+const {userInfo} = useSelector((state) => state.userLogin);
+
+//Redirect to Homepage if loggedin
+const history = useHistory();
+useEffect(() =>{
+  if(userInfo){
+    history.pushState("/");
+  }
+}, [history,userInfo]);
+
+
+const submitHandler = (event) => {
+  event.preventDefault();
+  dispatch(userRegister(username , email , password));
+};
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -29,6 +55,7 @@ export default function SignScreen() {
      
       <img src={Signup_3}  className={isMobile? classes.display : classes.image} />
       </Grid>  
+
       <Grid item xs={12} sm={12} md={4} component={Paper} elevation={0} >
         <div className={classes.paper}>
         <Typography component="h1" variant="h3">
@@ -48,6 +75,9 @@ export default function SignScreen() {
               label="Your Name"
               name="name"
               autoFocus
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -58,7 +88,8 @@ export default function SignScreen() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -70,6 +101,8 @@ export default function SignScreen() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -81,24 +114,24 @@ export default function SignScreen() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={submitHandler}
             >
               Sign In
             </Button>
+
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
+                <Link to='/' variant="body2">
+                  Already Registered ?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
               </Grid>
             </Grid>
           </form>
         </div>
       </Grid>
+
       <Grid item xs={false} sm={false} md={4}  >
       <img src={Signup_2}  className={isMobile? classes.display :classes.image2} />
       </Grid>  
