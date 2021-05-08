@@ -2,7 +2,7 @@ GET http://localhost:5000/users
 
 
 ###
-DELETE http://localhost:5000/users/60955332663e0d3170d7a821
+DELETE http://localhost:5000/users/606a2e3c2311c058f8447150
 
 ###
 
@@ -11,7 +11,7 @@ Content-Type: application/json
 
 {
     "username": "hello",
-    "email": "sd@gmail.com",
+    "email": "user@gmail.com",
     "password": "hello :)"
 }
 

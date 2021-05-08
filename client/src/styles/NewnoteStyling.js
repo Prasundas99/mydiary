@@ -20,7 +20,6 @@ export const useStyles = makeStyles((theme) => ({
         background: "#fff"
     },
     btn: {
-        marginTop: '0.5rem',
         padding: '0.5rem 1rem',
         marginLeft: '-75%',
         borderRadius: ' 1rem ',
