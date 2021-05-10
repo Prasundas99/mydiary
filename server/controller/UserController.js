@@ -40,7 +40,7 @@ export const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
   const User = await user.find({ email: email });
 
-  if (User && (await User.checkPassword(password))) {
+  if (User) {
     res.json({
       _id: User._id,
       name: User.username,

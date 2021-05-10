@@ -8,6 +8,8 @@ import {
   USER_REGISTER_SUCCESS,
 } from "../actionTypes/userConstants";
 
+import axios from 'axios';
+
 import { userLoginPost } from "../api/userLoginapi";
 import { userSignupPost } from "../api/userSignupapi";
 
@@ -42,7 +44,15 @@ export const userLogin = (email, password) => async (dispatch, getState) => {
       type: USER_LOGIN_REQUEST,
     });
 
-    const { data } = await userLoginPost(email, password);
+    const config = {
+      "Content-Type": "application/json",
+    };
+
+    const { data } = await axios.post(
+      "http://localhost:5000/users/login",
+            { email, password },
+      config
+    );
     console.log(data);
 
     dispatch({

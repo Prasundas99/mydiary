@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router";
+import { useHistory } from 'react-router-dom';
 
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -21,6 +21,7 @@ import { userLogin } from "../redux/actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function LoginScreen() {
+  const history = useHistory();
   const classes = useStyles();
   const isMobile = window.innerWidth <= 880;
 
@@ -30,9 +31,7 @@ export default function LoginScreen() {
   // REDUX
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.userLogin);
-
   // redirect to home page if logged in
-  const history = useHistory();
   useEffect(() => {
     if (userInfo) {
       history.push("/");
@@ -42,8 +41,12 @@ export default function LoginScreen() {
   // submit handler
   const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(userLogin(email, password));
-  };
+   dispatch(userLogin(email, password));
+   console.log(email);
+   history.push('/')
+   window.location.reload()
+
+   };
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -111,9 +114,12 @@ export default function LoginScreen() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link to="/signin" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
+              <Typography component="h5" className={classes.register_login}>
+                    Haven't Registered yet? &nbsp;
+                    <Link to="/Signin" variant="body2">
+                      Register
+                    </Link>
+                  </Typography>
               </Grid>
             </Grid>
           </form>

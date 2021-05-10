@@ -21,7 +21,7 @@ import { useStyles } from '../styles/LoginScreenStyle';
 import {userRegister} from '../redux/actions/userAction'
 import {useDispatch, useSelector } from "react-redux";
 
-export default function SignScreen() {
+const SignScreen = ({history}) => {
   const classes = useStyles();
   const isMobile = window.innerWidth <= 880;
 
@@ -35,8 +35,7 @@ const  dispatch = useDispatch();
 const {userInfo} = useSelector((state) => state.userLogin);
 
 //Redirect to Homepage if loggedin
-const history = useHistory();
-useEffect(() =>{
+useEffect((history) =>{
   if(userInfo){
     history.push("/");
   }
@@ -45,6 +44,7 @@ useEffect(() =>{
 
 const submitHandler = (event) => {
   event.preventDefault();
+  history.push("/");
   dispatch(userRegister(username , email , password));
 };
 
@@ -138,3 +138,5 @@ const submitHandler = (event) => {
     </Grid>
   );
 }
+
+export default SignScreen;
