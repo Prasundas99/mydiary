@@ -6,8 +6,11 @@ const config = {
 };
 
 export const userLoginPost = (email , password) =>{
+    console.log(email);
 axios.post(url,
     {email, password},
      config
      );
+
+     
 }     

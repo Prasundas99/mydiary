@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route,Redirect, Switch } from "react-router-do
 import { useSelector } from "react-redux";
 
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
-
+import history from './history';
 import ScrollToTop from "./scrolltotop";
 import LoginScreen from "./screen/LoginScreen";
 import SigninScreen from "./screen/SigninScreen";
@@ -28,7 +28,7 @@ function App() {
 
   return (
     <MuiThemeProvider theme={theme}>
-      <Router>
+      <Router history={history}>
         <ScrollToTop>
           <Switch>
           
