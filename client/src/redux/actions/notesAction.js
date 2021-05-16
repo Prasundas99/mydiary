@@ -1,27 +1,13 @@
-import {
-  NOTES_FETCH_REQUEST,
-  NOTES_FETCH_SUCCESS,
-  NOTES_FETCH_FAILED,
-  NOTES_POST_REQUEST,
-  NOTES_POST_SUCCESS,
-  NOTES_POST_FAILED,
-  NOTES_UPDATE_REQUEST,
-  NOTES_UPDATE_SUCCESS,
-  NOTES_UPDATE_FAILED,
-  NOTES_DELETE_REQUEST,
-  NOTES_DELETE_SUCCESS,
-  NOTES_DELETE_FAILED,
-} from "../actionTypes/notesConstants;";
-
-
 import axios from "axios";
 
-// get user NOTES action
-export const getNOTES = () => async (dispatch, getState) => {
+import {
+  FETCH_ALL, CREATE, UPDATE, DELETE
+} from "../actionTypes/notesConstants;";
+
+const url = "http://localhost:5000/users/notes",
+
+export const getPosts = () => async (dispatch, getState) => {
   try {
-    dispatch({
-      type: NOTES_FETCH_REQUEST,
-    });
 
     const {
       userLogin: { userInfo },
@@ -33,36 +19,23 @@ export const getNOTES = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-
-    const { data } = await axios.post(
-      "http://localhost:5000/users/notes",
+    const { data } = await axios.get(
+      url,
       config
     );
     console.log("ACTION:", data);
 
-    dispatch({
-      type: NOTES_FETCH_SUCCESS,
-      payload: data,
-    });
-    console.log("fetch NOTES");
+    const action = { type: FETCH_ALL, payload: data };
+    dispatch(action);
   } catch (error) {
-    dispatch({
-      type: NOTES_FETCH_FAILED,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
+    console.log(error);
   }
 };
 
-// post user NOTES action
-export const postNOTES = (NOTES) => async (dispatch, getState) => {
-  try {
-    dispatch({
-      type: NOTES_POST_REQUEST,
-    });
 
+
+export const createPost = (post) => async (dispatch, getState) => {
+  try {
     const {
       userLogin: { userInfo },
     } = getState();
@@ -73,35 +46,19 @@ export const postNOTES = (NOTES) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-
     const { data } = await axios.post(
-      "http://localhost:5000/users/notes",
-      NOTES,
+      url,
       config
     );
-
-    dispatch({
-      type: NOTES_POST_SUCCESS,
-      payload: data,
-    });
+    const action = { type: CREATE, payload: data };
+    dispatch(action);
   } catch (error) {
-    dispatch({
-      type: NOTES_POST_FAILED,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
+    console.log(error);
   }
 };
 
-// update user NOTES action
-export const updateNOTES = (NOTES) => async (dispatch, getState) => {
+export const updatePost = (id, post) => async (dispatch, getState) => {
   try {
-    dispatch({
-      type: NOTES_UPDATE_REQUEST,
-    });
-
     const {
       userLogin: { userInfo },
     } = getState();
@@ -112,35 +69,20 @@ export const updateNOTES = (NOTES) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-
     const { data } = await axios.put(
-      "http://localhost:5000/users/notes",
-      NOTES,
+      `${url}/${id}`,
+ 
       config
     );
-
-    dispatch({
-      type: NOTES_UPDATE_SUCCESS,
-      payload: data,
-    });
+    const action = { type: UPDATE, payload: data };
+    dispatch(action);
   } catch (error) {
-    dispatch({
-      type: NOTES_UPDATE_FAILED,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
+    console.log('error');
   }
 };
 
-// delete user NOTES action
-export const deleteNOTES = (NOTES) => async (dispatch, getState) => {
+export const deletePost = (id) => async (dispatch, getState) => {
   try {
-    dispatch({
-      type: NOTES_DELETE_REQUEST,
-    });
-
     const {
       userLogin: { userInfo },
     } = getState();
@@ -151,27 +93,17 @@ export const deleteNOTES = (NOTES) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-
-    const { data } = await axios.delete(
-     "http://localhost:5000/users/notes",
-      NOTES,
+ await axios.delete(
+     `${url}/${id}`,
       config
     );
-
-    dispatch({
-      type: NOTES_DELETE_SUCCESS,
-      payload: data,
-    });
+    const action = { type: DELETE, payload: id };
+    dispatch(action);
   } catch (error) {
-    dispatch({
-      type: NOTES_DELETE_FAILED,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
+    console.log(error);
   }
 };
+
 
 
 
