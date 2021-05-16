@@ -19,6 +19,10 @@ import { Link } from 'react-router-dom';
 
 import { useStyles } from "../styles/NavbarStyling";
 
+// REDUX
+import { userLogout } from "../redux/actions/userAction";
+import { useDispatch, useSelector } from "react-redux";
+
 export default function Navbar() {
   const classes = useStyles();
 
@@ -27,6 +31,14 @@ export default function Navbar() {
   //For media querries
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.up("md"));
+  const dispatch = useDispatch();
+
+  const { userInfo } = useSelector((state) => state.userLogin);
+
+  // handling logout
+  const logoutHandler = () => {
+    dispatch(userLogout());
+  };
 
   return (
     <div className={classes.root}>
@@ -40,11 +52,8 @@ export default function Navbar() {
           {isMobile ? (
             <>
               {/*Nav items*/}
-              <Typography variant="body2" className={classes.navItems}>
-                Hello, Prasun Das
-              </Typography>
               <Exit className={classes.exit} />
-              <Typography variant="body2" className={classes.navItems}>
+              <Typography variant="body2" className={classes.navItems} onClick={logoutHandler}>
                   Logout
               </Typography>
               <Link to = "/new" style={{ textDecoration: 'none' }}>
@@ -74,15 +83,10 @@ export default function Navbar() {
               >
                 <List className={classes.list}>
                   <ListItem button>
-                    <ListItemText  className={classes.mobilenavItems} >
-                       Hello, Prasun Das
-                    </ListItemText>
-                  </ListItem>
-                  <ListItem button>
                   <ListItemIcon>
                   <Exit className={classes.exit} />
                   </ListItemIcon>
-                   <ListItemText  className={classes.mobilenavItems} >
+                   <ListItemText  className={classes.mobilenavItems} onClick={logoutHandler} >
                      Logout
                     </ListItemText>
                   </ListItem>

@@ -10,9 +10,6 @@ import {
 
 import axios from 'axios';
 
-import { userLoginPost } from "../api/userLoginapi";
-import { userSignupPost } from "../api/userSignupapi";
-
 // user register action
 export const userRegister = (username, email, password) => async (dispatch) => {
   try {
@@ -20,7 +17,15 @@ export const userRegister = (username, email, password) => async (dispatch) => {
       type: USER_REGISTER_REQUEST,
     });
 
-    const { data } = await userSignupPost(username, email, password);
+    const config = {
+      "Content-Type": "application/json",
+    };
+
+    const { data } = await axios.post(
+      "http://localhost:5000/users/signup",
+            { email, password, username },
+      config
+    );
     console.log(data);
 
     dispatch({
