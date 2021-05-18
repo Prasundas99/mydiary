@@ -1,16 +1,34 @@
+import React, { useState, useEffect } from "react";
+import { useHistory } from 'react-router-dom';
+
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
-
 //Redux
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
+import {createPost} from "../redux/actions/notesAction";
 
 import { useStyles } from "../styles/NewnoteStyling";
 
 function NewNote() {
   const classes = useStyles();
+  const history = useHistory();
+
+ 
+
+  const [postTitle, setpostTitle] = useState(); console.log(postTitle);
+  const [postDesc, setpostDesc] = useState();
+  const dispatch = useDispatch();
+
+  const handleSubmit = (event) => {
+ event.preventDefault();
+    history.push("/");
+    console.log(postTitle);
+    dispatch(createPost(postTitle, postDesc));
+  };
+
   return (
     <div>
       <Paper elevation={1} className={classes.Paper}>
@@ -23,6 +41,8 @@ function NewNote() {
           label="Note Title"
           id="margin-none"
           className={classes.textField}
+          //value={postTitle}
+          onChange={(e) => setpostTitle(e.target.value)}
         />
 
         <TextField
@@ -31,13 +51,16 @@ function NewNote() {
           rows={18}
           rowsMax={9}
           className={classes.textArea}
-          variant='filled'
+          variant="filled"
+          value={postDesc}
+          onChange={(e) => setpostDesc(e.target.value)}
         />
         <br />
 
         <Button
           className={classes.btn}
           style={{ background: "rgb(38 98 137)", color: "#fff" }}
+          onClick={handleSubmit}
         >
           Post
         </Button>
