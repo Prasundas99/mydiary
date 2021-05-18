@@ -2,9 +2,9 @@ import axios from "axios";
 
 import {
   FETCH_ALL, CREATE, UPDATE, DELETE
-} from "../actionTypes/notesConstants;";
+} from "../actionTypes/notesConstants";
 
-const url = "http://localhost:5000/users/notes",
+const url = "http://localhost:5000/users/notes";
 
 export const getPosts = () => async (dispatch, getState) => {
   try {
@@ -34,7 +34,7 @@ export const getPosts = () => async (dispatch, getState) => {
 
 
 
-export const createPost = (post) => async (dispatch, getState) => {
+export const createPost = (title,desc) => async (dispatch, getState) => {
   try {
     const {
       userLogin: { userInfo },
@@ -48,6 +48,7 @@ export const createPost = (post) => async (dispatch, getState) => {
     };
     const { data } = await axios.post(
       url,
+      {title, desc},
       config
     );
     const action = { type: CREATE, payload: data };
@@ -56,6 +57,7 @@ export const createPost = (post) => async (dispatch, getState) => {
     console.log(error);
   }
 };
+
 
 export const updatePost = (id, post) => async (dispatch, getState) => {
   try {
@@ -80,6 +82,7 @@ export const updatePost = (id, post) => async (dispatch, getState) => {
     console.log('error');
   }
 };
+
 
 export const deletePost = (id) => async (dispatch, getState) => {
   try {

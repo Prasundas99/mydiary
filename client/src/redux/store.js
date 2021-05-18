@@ -3,9 +3,9 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from "redux-thunk";
 
 import { userLoginReducer, userRegisterReducer } from "./reducers/userReducer";
-import {
+import 
 notes
-} from "./reducers/NotesReducer";
+ from "./reducers/NotesReducer";
 
 
 const reducer = combineReducers({
