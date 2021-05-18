@@ -4,6 +4,9 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 
+//Redux
+import { useDispatch, useSelector } from 'react-redux';
+
 import { useStyles } from "../styles/NewnoteStyling";
 
 function NewNote() {
