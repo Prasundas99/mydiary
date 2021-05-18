@@ -44,7 +44,7 @@ export default function LoginScreen() {
    dispatch(userLogin(email, password));
    console.log(email);
    history.push('/')
-   window.location.reload()
+   //window.location.reload()
 
    };
 

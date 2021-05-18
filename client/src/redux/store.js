@@ -4,21 +4,15 @@ import thunk from "redux-thunk";
 
 import { userLoginReducer, userRegisterReducer } from "./reducers/userReducer";
 import {
-  getNotesReducer,
-  postNotesReducer,
-  updateNotesReducer,
-  deleteNotesReducer,
+notes
 } from "./reducers/NotesReducer";
 
 
 const reducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
+     userNotes: notes
 
-    userFetchNotes: getNotesReducer,
-    userPostNotes: postNotesReducer,
-    userUpdateNotes: updateNotesReducer,
-    userDeleteNotes: deleteNotesReducer,
   });
 
 //GET user info from localstorage

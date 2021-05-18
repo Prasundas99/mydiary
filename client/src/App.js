@@ -35,9 +35,7 @@ function App() {
           {!userInfo && <Redirect exact from="/" to="/login" />}
             <Route exact path="/Login" component={LoginScreen} />
             <Route exact path="/Signin" component={SigninScreen} />
-            <Route exact path="/ForgotPass" />
-            <Route exact path="/reset-password/:accessToken" />
-            
+           
             <>
               <Navbar />
               <Route exact path="/" component={Home} />
