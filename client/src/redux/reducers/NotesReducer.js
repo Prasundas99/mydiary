@@ -1,8 +1,9 @@
 import { FETCH_ALL, CREATE, UPDATE, DELETE} from '../actionTypes/notesConstants';
 
-const notes = (notes = [], action) => {
+const Notes = (notes = [], action) => {
   switch (action.type) {
     case FETCH_ALL:
+      console.log(action.payload);
       return action.payload;
 
     case CREATE:
@@ -17,8 +18,10 @@ const notes = (notes = [], action) => {
 
     
     default:
+      console.log(notes);
       return notes;
+      
   }
 };
 
-export default notes;
+export default Notes;

@@ -4,14 +4,14 @@ import thunk from "redux-thunk";
 
 import { userLoginReducer, userRegisterReducer } from "./reducers/userReducer";
 import 
-notes
+Notes
  from "./reducers/NotesReducer";
 
-
+console.log(Notes);
 const reducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
-     userNotes: notes
+    Notes: Notes
 
   });
 
