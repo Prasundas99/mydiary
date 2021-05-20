@@ -1,14 +1,16 @@
 import axios from "axios";
 
 import {
-  FETCH_ALL, CREATE, UPDATE, DELETE
+  FETCH_ALL,
+  CREATE,
+  UPDATE,
+  DELETE,
 } from "../actionTypes/notesConstants";
 
 const url = "http://localhost:5000/users/notes";
 
 export const getPosts = () => async (dispatch, getState) => {
   try {
-
     const {
       userLogin: { userInfo },
     } = getState();
@@ -19,10 +21,7 @@ export const getPosts = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(
-      url,
-      config
-    );
+    const { data } = await axios.get(url, config);
     console.log("ACTION:", data);
 
     const action = { type: FETCH_ALL, payload: data };
@@ -32,9 +31,7 @@ export const getPosts = () => async (dispatch, getState) => {
   }
 };
 
-
-
-export const createPost = (title,desc) => async (dispatch, getState) => {
+export const createPost = (title, body) => async (dispatch, getState) => {
   try {
     const {
       userLogin: { userInfo },
@@ -46,18 +43,13 @@ export const createPost = (title,desc) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.post(
-      url,
-      {title, desc},
-      config
-    );
+    const { data } = await axios.post(url, { title, body }, config);
     const action = { type: CREATE, payload: data };
     dispatch(action);
   } catch (error) {
     console.log(error);
   }
 };
-
 
 export const updatePost = (id, post) => async (dispatch, getState) => {
   try {
@@ -73,16 +65,15 @@ export const updatePost = (id, post) => async (dispatch, getState) => {
     };
     const { data } = await axios.put(
       `${url}/${id}`,
- 
+
       config
     );
     const action = { type: UPDATE, payload: data };
     dispatch(action);
   } catch (error) {
-    console.log('error');
+    console.log("error");
   }
 };
-
 
 export const deletePost = (id) => async (dispatch, getState) => {
   try {
@@ -96,17 +87,10 @@ export const deletePost = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
- await axios.delete(
-     `${url}/${id}`,
-      config
-    );
+    await axios.delete(`${url}/${id}`, config);
     const action = { type: DELETE, payload: id };
     dispatch(action);
   } catch (error) {
     console.log(error);
   }
 };
-
-
-
-
