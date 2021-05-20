@@ -38,7 +38,7 @@ export const registerUser = async (req, res, next) => {
 // @access Public
 export const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
-  const User = await user.find({ email: email });
+  const User = await user.findOne({ email: email });
 
   if (User) {
     res.json({

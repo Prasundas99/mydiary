@@ -21,7 +21,7 @@ export const getNotes = async (req, res, next) => {
 //@purpose: : Post new note by user
 export const postNotes = async (req, res, next) => {
   const User = await user.findOne({ _id: req.user._id });
-  var post = req.body;
+  var { title, body } = req.body;
   console.log(req.body);
   /*
     body.username = req.user._id;
@@ -30,7 +30,8 @@ export const postNotes = async (req, res, next) => {
   const accessToken = uuidv4();
 
   const newpost = {
-    ...post,
+    title: title,
+    body: body,
     username: User._id,
     accessToken: accessToken,
     isValid: true,
