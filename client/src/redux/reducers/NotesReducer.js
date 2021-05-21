@@ -3,7 +3,7 @@ import { FETCH_ALL, CREATE, UPDATE, DELETE} from '../actionTypes/notesConstants'
 const notes = (notes = [], action) => {
   switch (action.type) {
     case FETCH_ALL:
-      return action.payload;
+      return {notes: action.payload};
 
     case CREATE:
       console.log(notes);

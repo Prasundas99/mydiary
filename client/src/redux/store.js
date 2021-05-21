@@ -3,10 +3,9 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from "redux-thunk";
 
 import { userLoginReducer, userRegisterReducer } from "./reducers/userReducer";
-import 
-notes
- from "./reducers/NotesReducer";
+import notes from "./reducers/NotesReducer";
 
+ console.log(notes);
 
 const reducer = combineReducers({
     userLogin: userLoginReducer,
@@ -16,9 +15,10 @@ const reducer = combineReducers({
   });
 
 //GET user info from localstorage
-const userInfoFromLocalstorage = localStorage.getItem("userInfo");
+const userInfoFromLocalstorage = JSON.parse(localStorage.getItem("userInfo"));
 
 const initialState = {
+
     userLogin: {userInfo: userInfoFromLocalstorage},
     
 };

@@ -33,7 +33,7 @@ export const userRegister = (username, email, password) => async (dispatch) => {
       payload: data,
     });
 
-    localStorage.setItem("userOnfo", JSON.stringify(data));
+   // localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAILED,

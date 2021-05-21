@@ -6,8 +6,12 @@ import Button from "@material-ui/core/Button";
 
 import { useStyles } from "../styles/NewnoteStyling";
 
-function NewNote() {
+function EditNewNote() {
   const classes = useStyles();
+
+  const handleClickDelete = (event) => {
+    dispatch(deletePost(notes._id));
+  };
   return (
     <div>
       <Paper elevation={1} className={classes.Paper}>
@@ -42,6 +46,7 @@ function NewNote() {
         <Button
           className={classes.btndelete}
           style={{ background: "#892626", color: "#fff" }}
+          onClick={handleClickDelete}
         >
           Delete
         </Button>
@@ -50,4 +55,4 @@ function NewNote() {
   );
 }
 
-export default NewNote;
+export default EditNewNote;
