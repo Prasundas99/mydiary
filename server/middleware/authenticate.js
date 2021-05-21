@@ -11,7 +11,8 @@ const authMiddleware = async (req, res, next) => {
     try {
       token = req.headers.authorization.split(" ")[1];
       let decodedId;
-     await jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decoded) => {
+      console.log(token);
+      await jwt.verify(token, "Secret", (err, decoded) => {
         if (err) {
           console.log(err);
           next(err);

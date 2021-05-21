@@ -1,34 +1,49 @@
+import { useEffect } from "react";
+import { useHistory } from 'react-router-dom';
+//MUI
 import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Container from '@material-ui/core/Container';
-
+//Redux
+import { useDispatch } from "react-redux";
+import { getPosts } from "../redux/actions/notesAction";
+//styling
 import { useStyles } from "../styles/NotesStyling";
 
-function NotesCard() {
-    function randomColor() {
-        let hex = Math.floor(Math.random() * 0x01171c);
-        let color = "#" + hex.toString(18);
-       return color;
-      }
-    const classes = useStyles();
-    return (
-    <Container>    
-    <Grid container spacing={6}>
-      {/* Left Section 1 */}
-        <Grid item xs={12} md={12} lg={4}>
-            <Paper className={classes.CardOne} elevation={3} style={{backgroundColor: randomColor()}}>
-                <Typography variant='h4' component='h1'>
-                    Title
-                </Typography>
-                <Typography variant='body1'>
-                    lorem ipsum lorem lorem lorem
-                </Typography>
-            </Paper>
-        </Grid>
-      </Grid>
-    </Container>  
+function NotesCard({ notes, setCurrentId }) {
+  const history = useHistory();
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
+// Push or Redirect to edit screen
+  function Editpost() {
+    history.push(`/edit/${notes._id}`);
+  }
+//For Random colour of the cards
+  function randomColor() {
+    let hex = Math.floor(Math.random() * 0x01171c);
+    let color = "#" + hex.toString(18);
+    return color;
+  }
+  const classes = useStyles();
+  return (
+    <>
+        <Paper
+          onClick={Editpost}
+          className={classes.CardOne}
+          elevation={3}
+          style={{ backgroundColor: randomColor() }}
+        >
+          <Typography variant="h4" component="h1">
+            {notes.title}
+          </Typography>
+          <Typography variant="body1">
+            {notes.body}
+          </Typography>
+        </Paper>
+    </>
   );
 }
 
-export default NotesCard
+export default NotesCard;
