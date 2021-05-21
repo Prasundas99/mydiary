@@ -23,10 +23,7 @@ export const postNotes = async (req, res, next) => {
   const User = await user.findOne({ _id: req.user._id });
   var { title, body } = req.body;
   console.log(req.body);
-  /*
-    body.username = req.user._id;
-    console.log(req.body);
-    */
+    
   const accessToken = uuidv4();
 
   const newpost = {

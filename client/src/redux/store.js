@@ -11,6 +11,7 @@ const reducer = combineReducers({
   userNotes: notes,
 });
 
+
 //GET user info from localstorage
 const userInfoFromLocalstorage = JSON.parse(localStorage.getItem("userInfo"));
 

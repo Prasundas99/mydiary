@@ -36,7 +36,7 @@ export const createPost = (title, body) => async (dispatch, getState) => {
     const {
       userLogin: { userInfo },
     } = getState();
-
+    
     const config = {
       "Content-Type": "application/json",
       headers: {
@@ -44,7 +44,8 @@ export const createPost = (title, body) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.post(url, { title, body }, config);
-    const action = { type: CREATE, payload: data };
+    console.log(data);
+   const action = { type: CREATE, payload: data };
     dispatch(action);
   } catch (error) {
     console.log(error);

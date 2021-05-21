@@ -13,6 +13,7 @@ function Home() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPosts());
+    console.log(getPosts());
   }, [dispatch]);
 
    return (
@@ -29,6 +30,8 @@ function Home() {
           ;
         </Grid>
       </Container>
+
+
     </>
   );
 }
