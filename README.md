@@ -67,6 +67,12 @@ npm run dev
 npm run build
 ```
 
+## Screenshots
+![4](https://user-images.githubusercontent.com/58937669/119236876-65d5ee80-bb57-11eb-9574-ae577307e12f.png)
+![2](https://user-images.githubusercontent.com/58937669/119236877-68384880-bb57-11eb-9c45-45be93a81a4d.png)
+![1](https://user-images.githubusercontent.com/58937669/119236879-6a020c00-bb57-11eb-84ac-b02d92f88e32.png)
+
+
 
 ## License
 
