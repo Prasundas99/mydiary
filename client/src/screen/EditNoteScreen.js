@@ -2,27 +2,36 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+
 //Redux
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost, updatePost } from "../redux/actions/notesAction";
 //Styling
 import { useStyles } from "../styles/NewnoteStyling";
+import { useParams } from "react-router";
+import { useState } from "react";
 
-function EditNewNote({currentId}) {
-  const { notes, error } = useSelector((state) =>
-    currentId ? state.notes.find((p) => p._id === currentId) : null
-  );
+function EditNewNote() {
+  const { notes, error } = useSelector((state) => state.userNotes);
+const {id}  = useParams();
+console.log(id);
+
+const [post, setPost] = useState({
+  title: " ",
+  body: " ",
+});
+
+
   const classes = useStyles();
-console.log(notes);
-  //Redux
+   //Redux  
   const dispatch = useDispatch();
   //Update Post
   const handelClickUpdate = () => {
-    dispatch(updatePost(notes._id));
+    dispatch(updatePost(id, post));
   };
   //Delete Post
   const handleClickDelete = (event) => {
-    dispatch(deletePost(notes._id));
+    dispatch(deletePost(id));
   };
   return (
     <div>
@@ -36,6 +45,10 @@ console.log(notes);
           label="Note Title"
           id="margin-none"
           className={classes.textField}
+          value={post.title}
+          onChange={(e) => {
+            setPost({ ...post, title: e.target.value });
+          }}
         />
 
         <TextField
@@ -45,6 +58,10 @@ console.log(notes);
           rowsMax={9}
           className={classes.textArea}
           variant="filled"
+          value={post.body}
+          onChange={(e) => {
+            setPost({ ...post, body: e.target.value });
+          }}
         />
         <br />
 
