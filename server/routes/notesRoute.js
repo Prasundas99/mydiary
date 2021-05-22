@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get('/',authMiddleware, getNotes);
 router.post('/',authMiddleware,postNotes);
-router.patch('/:id',authMiddleware, patchNotes);
+router.put('/:id',authMiddleware, patchNotes);
 router.delete('/:id',authMiddleware,deleteNotes);
 
 export default router;

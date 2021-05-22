@@ -9,10 +9,14 @@ const Notes = (notes = [], action) => {
       return [...notes, action.payload];
 
     case UPDATE:
-      return notes.map((post) => (post._id === action.payload._id ? action.payload : post));
+      return {
+        notes: action.payload
+      };
 
     case DELETE:
-      return notes.filter((post) => post._id !== action.payload);
+      return{
+        notes: action.payload
+      }
 
     
     default:

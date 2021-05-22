@@ -64,9 +64,10 @@ export const updatePost = (id, post) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
+    console.log(userInfo);
     const { data } = await axios.put(
       `${url}/${id}`,
-
+      post,
       config
     );
     const action = { type: UPDATE, payload: data };
