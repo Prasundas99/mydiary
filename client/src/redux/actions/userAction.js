@@ -22,7 +22,7 @@ export const userRegister = (username, email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "http://localhost:5000/users/signup",
+      "https://mydiary-backend-host.herokuapp.com/users/signup",
             { email, password, username },
       config
     );
@@ -54,7 +54,7 @@ export const userLogin = (email, password) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.post(
-      "http://localhost:5000/users/login",
+      "https://mydiary-backend-host.herokuapp.com/users/login",
             { email, password },
       config
     );
