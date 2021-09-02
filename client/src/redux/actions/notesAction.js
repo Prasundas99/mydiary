@@ -5,9 +5,10 @@ import {
   CREATE,
   UPDATE,
   DELETE,
+  UPDATEDETAILS
 } from "../actionTypes/notesConstants";
 
-const url = "https://mydiary-backend-host.herokuapp.com/users/notes";
+const url = "http://localhost:5000/users/notes";
 
 export const getPosts = () => async (dispatch, getState) => {
   try {
@@ -36,7 +37,7 @@ export const createPost = (title, body) => async (dispatch, getState) => {
     const {
       userLogin: { userInfo },
     } = getState();
-    
+
     const config = {
       "Content-Type": "application/json",
       headers: {
@@ -45,14 +46,36 @@ export const createPost = (title, body) => async (dispatch, getState) => {
     };
     const { data } = await axios.post(url, { title, body }, config);
     console.log(data);
-   const action = { type: CREATE, payload: data };
+    const action = { type: CREATE, payload: data };
     dispatch(action);
   } catch (error) {
     console.log(error);
   }
 };
 
-export const updatePost = (id, post) => async (dispatch, getState) => {
+export const getUpdates = (id) => async (dispatch, getState) => {
+  try {
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      "Content-Type": "application/json",
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.get(`${url}/${id}`, config);
+    console.log("ACTION:", data);
+
+    const action = { type: UPDATEDETAILS, payload: data };
+    dispatch(action);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updatePost = (id, title, body) => async (dispatch, getState) => {
   try {
     const {
       userLogin: { userInfo },
@@ -65,9 +88,10 @@ export const updatePost = (id, post) => async (dispatch, getState) => {
       },
     };
     console.log(userInfo);
+    
     const { data } = await axios.put(
       `${url}/${id}`,
-      post,
+      {title, body},
       config
     );
     const action = { type: UPDATE, payload: data };

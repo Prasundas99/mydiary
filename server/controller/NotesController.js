@@ -43,6 +43,18 @@ export const postNotes = async (req, res, next) => {
     res.status(409).json({ message: error.message });
   }
 };
+//@route: GET users/notes/:id
+//@purpose: get details for update 
+export const getUpdateNotes = async (req, res, next) => {
+  const { id: id } = req.params;
+  try {
+    const updateExistingNotes = await Note.findById(id)
+    res.status(200).json(updateExistingNotes);
+  } catch (error) {
+    res.status(404);
+    next(error);
+  } 
+};
 
 // @route: PATCH users/notes/:id
 // @purpose: PATCH or update the notes
@@ -53,7 +65,8 @@ export const patchNotes = async (req, res) => {
   if (!Mongoose.Types.ObjectId.isValid(id))
     res.status(404).send("No post with that is Found");
 
-  const updateNotes = await Note.findByIdAndUpdate(id, post, {
+  const updateNotes = await Note.findByIdAndUpdate(id, post, 
+    {
     new: true,
   });
   res.json(updateNotes);

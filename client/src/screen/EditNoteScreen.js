@@ -5,29 +5,44 @@ import Button from "@material-ui/core/Button";
 
 //Redux
 import { useDispatch, useSelector } from "react-redux";
-import { deletePost, updatePost } from "../redux/actions/notesAction";
+import { deletePost, updatePost, getUpdates } from "../redux/actions/notesAction";
 //Styling
 import { useStyles } from "../styles/NewnoteStyling";
 import { useParams } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function EditNewNote() {
-  const { notes, error } = useSelector((state) => state.userNotes);
+
+ function EditNewNote() {
+  const { notes=[] , error } = useSelector((state) => state.userNotes);
+  console.log(notes.body);
+  
 const {id}  = useParams();
 console.log(id);
 
-const [post, setPost] = useState({
-  title: " ",
-  body: " ",
-});
+const [title, settitle] = useState("");
+const [body, setbody] = useState("");
 
-
-  const classes = useStyles();
+ const classes = useStyles();
    //Redux  
   const dispatch = useDispatch();
+
+  useEffect(() => { 
+    if (id && notes) {
+      settitle(notes.title);
+      setbody(notes.body);
+      }
+    else {
+      alert(error);
+      
+    } },[id, notes]) ;
+
+    
+  useEffect(() => {
+    dispatch(getUpdates(id));
+  },dispatch, updatePost [id]);
   //Update Post
   const handelClickUpdate = () => {
-    dispatch(updatePost(id, post));
+    dispatch(updatePost(id, title, body ));
   };
   //Delete Post
   const handleClickDelete = (event) => {
@@ -45,10 +60,9 @@ const [post, setPost] = useState({
           label="Note Title"
           id="margin-none"
           className={classes.textField}
-          value={post.title}
-          onChange={(e) => {
-            setPost({ ...post, title: e.target.value });
-          }}
+          onLoad= {title}
+          value= {title}
+          onChange={(e) => settitle(e.target.value)}
         />
 
         <TextField
@@ -58,10 +72,8 @@ const [post, setPost] = useState({
           rowsMax={9}
           className={classes.textArea}
           variant="filled"
-          value={post.body}
-          onChange={(e) => {
-            setPost({ ...post, body: e.target.value });
-          }}
+          value={body}
+          onChange={(e) => setbody(e.target.value)}
         />
         <br />
 
@@ -69,6 +81,7 @@ const [post, setPost] = useState({
           className={classes.btn}
           style={{ background: "rgb(38 98 137)", color: "#fff" }}
           onClick={handelClickUpdate}
+        
         >
           Update
         </Button>
