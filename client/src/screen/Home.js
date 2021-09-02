@@ -8,7 +8,9 @@ import { useEffect } from "react";
 import { Container } from "@material-ui/core";
 
 function Home() {
-  const { notes, error } = useSelector((state) => state.userNotes);
+  const {notes}= useSelector((state) => state.userNotes);
+  console.log(notes);
+  
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -16,13 +18,13 @@ function Home() {
     console.log(getPosts());
   }, [dispatch]);
 
-   return (
+ 
+  return (
     <>
       <NewnoteBox />
       <Container>
         <Grid container spacing={3}>
-          {notes &&
-            notes.map((id) => (
+          {notes && notes.map ((id) => (
               <Grid  key={id}  item xs={12} md={4} lg={4}>
                 <NotesCard  notes={id} />
               </Grid>
