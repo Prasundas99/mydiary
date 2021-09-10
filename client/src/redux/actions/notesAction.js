@@ -23,12 +23,12 @@ export const getPosts = () => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.get(url, config);
-    console.log("ACTION:", data);
+    // console.log("ACTION:", data);
 
     const action = { type: FETCH_ALL, payload: data };
     dispatch(action);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 
@@ -45,11 +45,11 @@ export const createPost = (title, body) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.post(url, { title, body }, config);
-    console.log(data);
+    // console.log(data);
     const action = { type: CREATE, payload: data };
     dispatch(action);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 
@@ -66,12 +66,12 @@ export const getUpdates = (id) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.get(`${url}/${id}`, config);
-    console.log("ACTION:", data);
+    // console.log("ACTION:", data);
 
     const action = { type: UPDATEDETAILS, payload: data };
     dispatch(action);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 
@@ -87,7 +87,7 @@ export const updatePost = (id, title, body) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    console.log(userInfo);
+    // console.log(userInfo);
     
     const { data } = await axios.put(
       `${url}/${id}`,
@@ -97,7 +97,7 @@ export const updatePost = (id, title, body) => async (dispatch, getState) => {
     const action = { type: UPDATE, payload: data };
     dispatch(action);
   } catch (error) {
-    console.log("error");
+    // console.log("error");
   }
 };
 
@@ -117,6 +117,6 @@ export const deletePost = (id) => async (dispatch, getState) => {
     const action = { type: DELETE, payload: id };
     dispatch(action);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };

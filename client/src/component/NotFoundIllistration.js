@@ -15,7 +15,7 @@ function NotFound() {
     const classes = useStyles();
     return (
       <Container>  
-            <img src={Home} className={classes.root} /> 
+            <img src={Home} alt="Home.png" className={classes.root} /> 
       </Container> 
     )
 }

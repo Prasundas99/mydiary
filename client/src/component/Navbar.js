@@ -21,7 +21,7 @@ import { useStyles } from "../styles/NavbarStyling";
 
 // REDUX
 import { userLogout } from "../redux/actions/userAction";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export default function Navbar() {
   const classes = useStyles();
@@ -33,7 +33,7 @@ export default function Navbar() {
   const isMobile = useMediaQuery(theme.breakpoints.up("md"));
   const dispatch = useDispatch();
 
-  const { userInfo } = useSelector((state) => state.userLogin);
+  // const { userInfo } = useSelector((state) => state.userLogin);
 
   // handling logout
   const logoutHandler = () => {
@@ -53,7 +53,7 @@ export default function Navbar() {
             <>
               {/*Nav items*/}
               <Exit className={classes.exit} />
-              <Typography variant="body2" className={classes.navItems} onClick={logoutHandler}>
+              <Typography style={{cursor:"pointer"}} variant="body2" className={classes.navItems} onClick={logoutHandler}>
                   Logout
               </Typography>
               <Link to = "/new" style={{ textDecoration: 'none' }}>

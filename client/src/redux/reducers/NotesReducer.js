@@ -5,7 +5,7 @@ const Notes = (notes = [], action) => {
     case FETCH_ALL:
       return {notes: action.payload};
     case CREATE:
-      console.log(notes);
+      //console.log(notes);
       return [...notes, action.payload];
 
     case UPDATEDETAILS:
@@ -23,7 +23,7 @@ const Notes = (notes = [], action) => {
 
     
     default:
-      console.log(notes);
+      // console.log(notes);
       return notes;
       
   }

@@ -9,13 +9,13 @@ import { Container } from "@material-ui/core";
 
 function Home() {
   const {notes}= useSelector((state) => state.userNotes);
-  console.log(notes);
+  // console.log(notes);
   
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPosts());
-    console.log(getPosts());
+    // console.log(getPosts());
   }, [dispatch]);
 
  

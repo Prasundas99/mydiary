@@ -1,7 +1,7 @@
-import { BrowserRouter as Router, Route,Redirect, Switch } from "react-router-dom";
+import { Router, Route,Redirect, Switch } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+import { MuiThemeProvider, createTheme  } from "@material-ui/core";
 import history from './history';
 import ScrollToTop from "./scrolltotop";
 import LoginScreen from "./screen/LoginScreen";
@@ -16,7 +16,8 @@ import Bug from "./screen/Bug";
 
 function App() {
   const { userInfo } = useSelector((state) => state.userLogin);
-    const theme = createMuiTheme({
+  // const userInfo = true;
+    const theme = createTheme ({
       typography: {
         fontFamily: '"Segoe UI "',
       },

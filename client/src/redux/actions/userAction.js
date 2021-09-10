@@ -26,7 +26,7 @@ export const userRegister = (username, email, password) => async (dispatch) => {
             { email, password, username },
       config
     );
-    console.log(data);
+    // console.log(data);
 
     dispatch({
       type: USER_REGISTER_SUCCESS,
@@ -58,7 +58,7 @@ export const userLogin = (email, password) => async (dispatch, getState) => {
             { email, password },
       config
     );
-    console.log(data);
+    // console.log(data);
 
     dispatch({
       type: USER_LOGIN_SUCCESS,
