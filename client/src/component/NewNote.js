@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 
 import Paper from "@material-ui/core/Paper";
@@ -7,7 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 //Redux
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {createPost} from "../redux/actions/notesAction";
 
 import { useStyles } from "../styles/NewnoteStyling";
@@ -18,14 +18,15 @@ function NewNote() {
 
  
 
-  const [postTitle, setpostTitle] = useState(); console.log(postTitle);
+  const [postTitle, setpostTitle] = useState(); 
+  // console.log(postTitle);
   const [postDesc, setpostDesc] = useState();
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
  event.preventDefault();
     history.push("/");
-    console.log(postTitle);
+    // console.log(postTitle);
     dispatch(createPost(postTitle, postDesc));
   };
 

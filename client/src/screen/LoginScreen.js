@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from 'react-router-dom';
+import { useHistory,Link } from 'react-router-dom';
 
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
+// import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -42,7 +42,7 @@ export default function LoginScreen() {
   const submitHandler = (event) => {
     event.preventDefault();
    dispatch(userLogin(email, password));
-   console.log(email);
+  //  console.log(email);
    history.push('/')
    //window.location.reload()
 
@@ -54,6 +54,7 @@ export default function LoginScreen() {
       <Grid item xs={false} sm={false} md={4}>
         <img
           src={Login_1}
+          alt="login_1.png"
           className={isMobile ? classes.display : classes.image}
         />
       </Grid>
@@ -109,14 +110,14 @@ export default function LoginScreen() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link to="Password-reset" variant="body2">
+                <Link style={{textDecoration:"none", color:"rgb(38 98 137)"}} to="/Password-reset" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
               <Typography component="h5" className={classes.register_login}>
                     Haven't Registered yet? &nbsp;
-                    <Link to="/Signin" variant="body2">
+                    <Link style={{textDecoration:"none", color:"rgb(38 98 137)"}} to="/Signin" variant="body2">
                       Register
                     </Link>
                   </Typography>
@@ -128,6 +129,7 @@ export default function LoginScreen() {
       <Grid item xs={false} sm={false} md={4}>
         <img
           src={Login_2}
+          alt="Login_2.png"
           className={isMobile ? classes.display : classes.image2}
         />
       </Grid>

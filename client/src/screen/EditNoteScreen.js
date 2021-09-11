@@ -14,10 +14,10 @@ import { useEffect, useState } from "react";
 
  function EditNewNote() {
   const { notes=[] , error } = useSelector((state) => state.userNotes);
-  console.log(notes.body);
+  // console.log(notes.body);
   
 const {id}  = useParams();
-console.log(id);
+// console.log(id);
 
 const [title, settitle] = useState("");
 const [body, setbody] = useState("");
@@ -34,12 +34,12 @@ const [body, setbody] = useState("");
     else {
       alert(error);
       
-    } },[id, notes]) ;
+    } },[id, notes,error]) ;
 
     
   useEffect(() => {
     dispatch(getUpdates(id));
-  },dispatch, updatePost [id]);
+  },[dispatch,id,]);
   //Update Post
   const handelClickUpdate = () => {
     dispatch(updatePost(id, title, body ));

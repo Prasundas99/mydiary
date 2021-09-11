@@ -14,7 +14,7 @@ function BugIllistration() {
   const classes = useStyles();
   return (
     <Container>
-      <img src={Home} className={classes.root} />
+      <img src={Home} alt="home.png" className={classes.root} />
     </Container>
   );
 }
