@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
  import { Link } from "react-router-dom";
 
 import Button from '@material-ui/core/Button';
+import  Alert from '@material-ui/lab/Alert';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -28,12 +29,13 @@ const SignScreen = ({history}) => {
 const [username , setUsername] = useState("");
 const [email , setEmail] = useState("");
 const [password , setPassword] = useState("");
+const [error, setError] = useState("")
 
 
 //redux
 const  dispatch = useDispatch();
-const {userInfo} = useSelector((state) => state.userLogin);
-
+const {userInfo } = useSelector((state) => state.userLogin);
+const {serverError} = useSelector((state) => state.userRegister)
 //Redirect to Homepage if loggedin
 useEffect((history) =>{
   if(userInfo){
@@ -41,11 +43,36 @@ useEffect((history) =>{
   }
 }, [history,userInfo]);
 
+  //serverside validation
+  useEffect(() =>{
+    if(serverError !== null){
+      setError("User with this email address already exist!")
+    }if(serverError === true){
+      history.push("/")
+    }
+  }, [serverError,history])
+
 
 const submitHandler = (event) => {
   event.preventDefault();
-  history.push("/");
-  dispatch(userRegister(username , email , password));
+  if (username && email && password) {
+    if(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)){
+      if(password.match(/^[A-Za-z]\w{7,14}$/)){
+        dispatch(userRegister(username , email , password));
+      }
+      else{
+        setError("password must be between 7 to 16 characters which contain only characters, numeric digits, underscore and first character must be a letter")
+      }
+
+    }
+    else{
+      setError("This is not the right email")
+    }
+
+  } else {
+    setError("Please fill all the fields")
+  }  
+
 };
 
   return (
@@ -65,6 +92,7 @@ const submitHandler = (event) => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          {error ? <Alert severity="error">{error}</Alert>:""}
           <form className={classes.form} noValidate>
           <TextField
               variant="outlined"
