@@ -1,6 +1,7 @@
 import { generateToken } from "../utils/generateToken.js";
 import user from "../models/userModel.js";
 import Mongoose from "mongoose";
+import bcrypt from "bcrypt"
 
 //@purpose: new user and get token
 //@route:  POST user/register
@@ -8,29 +9,33 @@ import Mongoose from "mongoose";
 export const registerUser = async (req, res, next) => {
   const { username, email, password } = req.body;
   const userExists = await user.findOne({ email: email });
-
   if (userExists) {
     res.status(400);
     const err = new Error("User already exists");
     next(err);
   }
-
-  const User = await user.create({
-    username,
-    email,
-    password,
-  });
-  if (User) {
-    res.json({
-      _id: User._id,
-      name: User.username,
-      password: User.password,
+  else {
+    const User = await user.create({
+      username,
+      email,
+      password,
     });
-  } else {
-    res.status(404);
-    const err = new Error("Invalid User Data");
-    next(err);
+    if (User) {
+      res.json({
+        _id: User._id,
+        name: User.username,
+        password: User.password,
+      });
+    } else {
+      res.status(404);
+      const err = new Error("Invalid User Data");
+      next(err);
+    }
   }
+
+
+
+
 };
 
 // @purpose: Auth user and get token
@@ -39,19 +44,27 @@ export const registerUser = async (req, res, next) => {
 export const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
   const User = await user.findOne({ email: email });
-
   if (User) {
-    res.json({
-      _id: User._id,
-      name: User.username,
-      email: User.email,
-      token: generateToken(User._id),
-    });
-  } else {
-    res.status(401);
-    const err = new Error("Invalid email or password");
+    const checkPassword = await bcrypt.compare(password, User.password)
+    if (checkPassword) {
+      res.json({
+        _id: User._id,
+        name: User.username,
+        email: User.email,
+        token: generateToken(User._id),
+      });
+    } else {
+      res.status(401);
+      const err = new Error("Invalid email or password");
+      next(err);
+    }
+  }
+  else{
+    res.status(404);
+    const err = new Error("No user associte with this email!");
     next(err);
   }
+
 };
 
 // @purpose: get user

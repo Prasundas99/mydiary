@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useHistory,Link } from 'react-router-dom';
 
 import Button from "@material-ui/core/Button";
+import  Alert from '@material-ui/lab/Alert';
+
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -27,10 +29,11 @@ export default function LoginScreen() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("")
 
   // REDUX
   const dispatch = useDispatch();
-  const { userInfo } = useSelector((state) => state.userLogin);
+  const { userInfo,isAuthenticated,serverError } = useSelector((state) => state.userLogin);
   // redirect to home page if logged in
   useEffect(() => {
     if (userInfo) {
@@ -38,13 +41,31 @@ export default function LoginScreen() {
     }
   }, [history, userInfo]);
 
+  useEffect(() => {
+    if(serverError === "Request failed with status code 404"){
+      setError("No account associated with this email");
+    }
+
+  }, [serverError])
+  useEffect(() => {
+    if(serverError === "Request failed with status code 401"){
+      setError("Invalid email or password");
+    }
+
+  }, [serverError])
+
   // submit handler
   const submitHandler = (event) => {
     event.preventDefault();
-   dispatch(userLogin(email, password));
-  //  console.log(email);
-   history.push('/')
-   //window.location.reload()
+    if(email !== "" && password !== ""){
+      dispatch(userLogin(email, password));
+      if(isAuthenticated){
+        history.push('/')
+      }
+    }
+    else{
+      setError("Please Provide Your Credentials Properly!")
+    }
 
    };
 
@@ -67,6 +88,7 @@ export default function LoginScreen() {
           <Typography component="h1" variant="h5">
             Login
           </Typography>
+          {error ? <Alert severity="error">{error}</Alert>:""}
           <form className={classes.form} noValidate>
             <TextField
               variant="outlined"
