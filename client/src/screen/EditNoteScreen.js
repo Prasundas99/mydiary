@@ -13,11 +13,11 @@ import { useEffect, useState } from "react";
 
 
  function EditNewNote() {
-  const { notes=[] , error } = useSelector((state) => state.userNotes);
+  const { notes, error } = useSelector((state) => state.userNotes);
   // console.log(notes.body);
   
 const {id}  = useParams();
-// console.log(id);
+//console.log(id);
 
 const [title, settitle] = useState("");
 const [body, setbody] = useState("");
@@ -25,7 +25,6 @@ const [body, setbody] = useState("");
  const classes = useStyles();
    //Redux  
   const dispatch = useDispatch();
-
   useEffect(() => { 
     if (id && notes) {
       settitle(notes.title);

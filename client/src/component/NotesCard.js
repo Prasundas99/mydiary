@@ -9,7 +9,7 @@ import { getPosts } from "../redux/actions/notesAction";
 //styling
 import { useStyles } from "../styles/NotesStyling";
 
-function NotesCard({ notes, setCurrentId }) {
+function NotesCard({ notes }) {
   const history = useHistory();
 
   const dispatch = useDispatch();
