@@ -20,9 +20,9 @@ export const userRegister = (username, email, password) => async (dispatch) => {
     const config = {
       "Content-Type": "application/json",
     };
-
+    const baseUrl="https://mydiary-backend-host.herokuapp.com";
     const { data } = await axios.post(
-      "http://localhost:5000/users/signup",
+          baseUrl+"/users/signup",
             { email, password, username },
       config
     );
@@ -54,7 +54,7 @@ export const userLogin = (email, password) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.post(
-      "http://localhost:5000/users/login",
+      baseUrl+"/users/login",
             { email, password },
       config
     );
