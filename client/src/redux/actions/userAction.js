@@ -8,7 +8,7 @@ import {
   USER_REGISTER_SUCCESS,
 } from "../actionTypes/userConstants";
 
-import axios from 'axios';
+import axios from "axios";
 
 // user register action
 export const userRegister = (username, email, password) => async (dispatch) => {
@@ -20,10 +20,10 @@ export const userRegister = (username, email, password) => async (dispatch) => {
     const config = {
       "Content-Type": "application/json",
     };
-    const baseUrl="https://mydiary-backend-host.herokuapp.com";
+    const baseUrl = "https://mydiary-backend-host.herokuapp.com";
     const { data } = await axios.post(
-          baseUrl+"/users/signup",
-            { email, password, username },
+      baseUrl + "/users/signup",
+      { email, password, username },
       config
     );
     // console.log(data);
@@ -33,7 +33,7 @@ export const userRegister = (username, email, password) => async (dispatch) => {
       payload: data,
     });
 
-   // localStorage.setItem("userInfo", JSON.stringify(data));
+    // localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAILED,
@@ -52,10 +52,10 @@ export const userLogin = (email, password) => async (dispatch, getState) => {
     const config = {
       "Content-Type": "application/json",
     };
-
+    const baseUrl = "https://mydiary-backend-host.herokuapp.com";
     const { data } = await axios.post(
-      baseUrl+"/users/login",
-            { email, password },
+      baseUrl + "/users/login",
+      { email, password },
       config
     );
     // console.log(data);
