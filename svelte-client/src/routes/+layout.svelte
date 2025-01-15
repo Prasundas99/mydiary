@@ -2,6 +2,7 @@
 <script>
 	import Header from './Header.svelte';
 	import '../app.css';
+  import { FlatToast, ToastContainer } from 'svelte-toasts';
 	/** @type {{children: import('svelte').Snippet}} */
 	let { children } = $props();
 
@@ -13,6 +14,9 @@
   
 	  <main>
 		{@render children()}
+		<ToastContainer placement="top-right" let:data={data}>
+			<FlatToast {data} />
+		</ToastContainer>
 	  </main>
   
 	  <footer>
