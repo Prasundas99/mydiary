@@ -3,6 +3,7 @@
   import Button from "$lib/components/Button/Button.svelte";
   import InputField from "$lib/components/Input/InputField.svelte";
   import { userStore } from "$lib/store/userStore";
+  import { toasts } from "svelte-toasts";
 
   
     let title = "";
@@ -14,11 +15,18 @@
         // Call your createNoteApi function here
         const response = await createNoteApi(user?.token, title, body);
         console.log("Note created:", response);
-        // Optionally reset the inputs
+        toasts.add({
+          title: "Note created successfully",
+          type: "success",
+        })
         title = "";
         body = "";
       } catch (error) {
         console.error("Error creating note:", error);
+        toasts.add({
+          title: "Error creating note",
+          type: "error",
+        })
       }
     };
   </script>

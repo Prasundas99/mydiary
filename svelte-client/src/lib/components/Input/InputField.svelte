@@ -33,6 +33,7 @@
   
   <div class="input-container">
     {#if label}
+      <!-- svelte-ignore a11y_label_has_associated_control -->
       <label>{label}</label>
     {/if}
     <input

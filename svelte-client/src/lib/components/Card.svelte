@@ -1,22 +1,18 @@
 <script>
-    let cardData = {
-      title: "hii",
-      body: "hello"
+    export let cardData = {
+      title: "",
+      body: "",
+      _id: ""
     };
   
-    const deleteCard = () => {
-      cardData = {
-        title: "",
-        body: ""
-      }; 
-    };
+    export let handleDelete;
   </script>
   
   {#if cardData}
     <div class="card">
       <h2>{cardData.title}</h2>
       <p>{cardData.body}</p>
-      <button on:click={deleteCard}>Delete</button>
+      <button on:click={() =>handleDelete(cardData._id)}>Delete</button>
     </div>
   {/if}
   
