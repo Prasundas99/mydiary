@@ -1,6 +1,5 @@
 <script>
 	import { browser } from "$app/environment";
-	import logo from "$lib/images/svelte-logo.svg";
 	import { userStore } from "$lib/store/userStore";
 	import { page } from "$app/state";
 	import { goto } from "$app/navigation";
@@ -50,12 +49,6 @@
 	  justify-content: center;
 	  width: 100%;
 	  height: 100%;
-	}
-  
-	.corner img {
-	  width: 2em;
-	  height: 2em;
-	  object-fit: contain;
 	}
   
 	nav {
@@ -127,8 +120,8 @@
   <header>
 	{#if user?.token}
 	  <div class="corner">
-		<a href="https://svelte.dev/docs/kit">
-		  <img src={logo} alt="SvelteKit" />
+		<a href="/">
+			myDiary
 		</a>
 	  </div>
   
@@ -140,15 +133,8 @@
 		  <li aria-current={page.url.pathname === "/" ? "page" : undefined}>
 			<a href="/">Home</a>
 		  </li>
-		  <li aria-current={page.url.pathname === "/about" ? "page" : undefined}>
-			<a href="/about">About</a>
-		  </li>
-		  <li
-			aria-current={page.url.pathname.startsWith("/sverdle")
-			  ? "page"
-			  : undefined}
-		  >
-			<a href="/sverdle">Sverdle</a>
+		  <li aria-current={page.url.pathname === "/create" ? "page" : undefined}>
+			<a href="/create">Create</a>
 		  </li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
