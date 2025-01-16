@@ -10,6 +10,9 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch"
 	},
+	"engines": {
+		"node": ">=18 <21"
+	  },
 	"devDependencies": {
 		"@fontsource/fira-mono": "^5.0.0",
 		"@neoconfetti/svelte": "^2.0.0",
