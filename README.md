@@ -1,6 +1,10 @@
 # mydiary
 A Personal diary webapp where user can write their own things uniquely
 
+# Demo
+Legacy (React version): https://mydiary-mern.netlify.app/login
+
+Current (sveleteKit version): https://mydiary-svelte-jualjge75-withcleverworldgmailcoms-projects.vercel.app/auth/login
 
 ## Features
 
