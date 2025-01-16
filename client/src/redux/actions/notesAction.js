@@ -8,7 +8,7 @@ import {
   UPDATEDETAILS
 } from "../actionTypes/notesConstants";
 
-const url = "https://mydiary-backend-host.herokuapp.com/users/notes";
+const url = "https://mydiary-server.onrender.com/users/notes";
 
 export const getPosts = () => async (dispatch, getState) => {
   try {
